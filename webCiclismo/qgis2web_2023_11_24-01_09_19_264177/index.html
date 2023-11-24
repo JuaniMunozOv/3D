@@ -1,0 +1,692 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="initial-scale=1,user-scalable=no,maximum-scale=1,width=device-width">
+        <meta name="mobile-web-app-capable" content="yes">
+        <meta name="apple-mobile-web-app-capable" content="yes">
+        <link rel="stylesheet" href="css/leaflet.css"><link rel="stylesheet" href="css/L.Control.Locate.min.css">
+        <link rel="stylesheet" href="css/qgis2web.css"><link rel="stylesheet" href="css/fontawesome-all.min.css">
+        <link rel="stylesheet" href="css/MarkerCluster.css">
+        <link rel="stylesheet" href="css/MarkerCluster.Default.css">
+        <link rel="stylesheet" href="css/leaflet-measure.css">
+        <style>
+        html, body, #map {
+            width: 100%;
+            height: 100%;
+            padding: 0;
+            margin: 0;
+        }
+        </style>
+        <title></title>
+    </head>
+    <body>
+        <div id="map">
+        </div>
+        <script src="js/qgis2web_expressions.js"></script>
+        <script src="js/leaflet.js"></script><script src="js/L.Control.Locate.min.js"></script>
+        <script src="js/leaflet.rotatedMarker.js"></script>
+        <script src="js/leaflet.pattern.js"></script>
+        <script src="js/leaflet-hash.js"></script>
+        <script src="js/Autolinker.min.js"></script>
+        <script src="js/rbush.min.js"></script>
+        <script src="js/labelgun.min.js"></script>
+        <script src="js/labels.js"></script>
+        <script src="js/leaflet-measure.js"></script>
+        <script src="js/leaflet.markercluster.js"></script>
+        <script src="data/LaGargaOrba_1.js"></script>
+        <script src="data/LaGargaSagra_2.js"></script>
+        <script src="data/LaGargaSur_3.js"></script>
+        <script src="data/AltodeEbo_4.js"></script>
+        <script src="data/Ratestossaldelsdiners_5.js"></script>
+        <script src="data/FinCiclismo_6.js"></script>
+        <script src="data/InicioCiclismo_7.js"></script>
+        <script>
+        var map = L.map('map', {
+            zoomControl:true, maxZoom:28, minZoom:1
+        }).fitBounds([[38.65241182811671,-0.3597433624504828],[38.89382635811573,0.11125964793611792]]);
+        var hash = new L.Hash(map);
+        map.attributionControl.setPrefix('<a href="https://github.com/tomchadwin/qgis2web" target="_blank">qgis2web</a> &middot; <a href="https://leafletjs.com" title="A JS library for interactive maps">Leaflet</a> &middot; <a href="https://qgis.org">QGIS</a>');
+        var autolinker = new Autolinker({truncate: {length: 30, location: 'smart'}});
+        L.control.locate({locateOptions: {maxZoom: 19}}).addTo(map);
+        var measureControl = new L.Control.Measure({
+            position: 'topleft',
+            primaryLengthUnit: 'meters',
+            secondaryLengthUnit: 'kilometers',
+            primaryAreaUnit: 'sqmeters',
+            secondaryAreaUnit: 'hectares'
+        });
+        measureControl.addTo(map);
+        document.getElementsByClassName('leaflet-control-measure-toggle')[0]
+        .innerHTML = '';
+        document.getElementsByClassName('leaflet-control-measure-toggle')[0]
+        .className += ' fas fa-ruler';
+        var bounds_group = new L.featureGroup([]);
+        function setBounds() {
+        }
+        map.createPane('pane_OpenStreetMap_0');
+        map.getPane('pane_OpenStreetMap_0').style.zIndex = 400;
+        var layer_OpenStreetMap_0 = L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
+            pane: 'pane_OpenStreetMap_0',
+            opacity: 1.0,
+            attribution: '',
+            minZoom: 1,
+            maxZoom: 28,
+            minNativeZoom: 0,
+            maxNativeZoom: 19
+        });
+        layer_OpenStreetMap_0;
+        map.addLayer(layer_OpenStreetMap_0);
+        function pop_LaGargaOrba_1(feature, layer) {
+            var popupContent = '<table>\
+                    <tr>\
+                        <th scope="row">Name</th>\
+                        <td>' + (feature.properties['Name'] !== null ? autolinker.link(feature.properties['Name'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <th scope="row">ref</th>\
+                        <td>' + (feature.properties['ref'] !== null ? autolinker.link(feature.properties['ref'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <th scope="row">Atributos ciclismo_���full_id</th>\
+                        <td>' + (feature.properties['Atributos ciclismo_���full_id'] !== null ? autolinker.link(feature.properties['Atributos ciclismo_���full_id'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <th scope="row">Atributos ciclismo_osm_id</th>\
+                        <td>' + (feature.properties['Atributos ciclismo_osm_id'] !== null ? autolinker.link(feature.properties['Atributos ciclismo_osm_id'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <th scope="row">Atributos ciclismo_osm_type</th>\
+                        <td>' + (feature.properties['Atributos ciclismo_osm_type'] !== null ? autolinker.link(feature.properties['Atributos ciclismo_osm_type'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <th scope="row">Atributos ciclismo_route</th>\
+                        <td>' + (feature.properties['Atributos ciclismo_route'] !== null ? autolinker.link(feature.properties['Atributos ciclismo_route'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <th scope="row">Atributos ciclismo_type</th>\
+                        <td>' + (feature.properties['Atributos ciclismo_type'] !== null ? autolinker.link(feature.properties['Atributos ciclismo_type'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <th scope="row">Atributos ciclismo_ref</th>\
+                        <td>' + (feature.properties['Atributos ciclismo_ref'] !== null ? autolinker.link(feature.properties['Atributos ciclismo_ref'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <th scope="row">Atributos ciclismo_operator</th>\
+                        <td>' + (feature.properties['Atributos ciclismo_operator'] !== null ? autolinker.link(feature.properties['Atributos ciclismo_operator'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <th scope="row">Atributos ciclismo_network</th>\
+                        <td>' + (feature.properties['Atributos ciclismo_network'] !== null ? autolinker.link(feature.properties['Atributos ciclismo_network'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <th scope="row">Atributos ciclismo_mtb_scale_</th>\
+                        <td>' + (feature.properties['Atributos ciclismo_mtb_scale_'] !== null ? autolinker.link(feature.properties['Atributos ciclismo_mtb_scale_'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <th scope="row">Atributos ciclismo_distance</th>\
+                        <td>' + (feature.properties['Atributos ciclismo_distance'] !== null ? autolinker.link(feature.properties['Atributos ciclismo_distance'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <th scope="row">Atributos ciclismo_ascent</th>\
+                        <td>' + (feature.properties['Atributos ciclismo_ascent'] !== null ? autolinker.link(feature.properties['Atributos ciclismo_ascent'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                </table>';
+            layer.bindPopup(popupContent, {maxHeight: 400});
+        }
+
+        function style_LaGargaOrba_1_0() {
+            return {
+                pane: 'pane_LaGargaOrba_1',
+                opacity: 1,
+                color: 'rgba(255,10,34,1.0)',
+                dashArray: '',
+                lineCap: 'square',
+                lineJoin: 'bevel',
+                weight: 3.0,
+                fillOpacity: 0,
+                interactive: true,
+            }
+        }
+        map.createPane('pane_LaGargaOrba_1');
+        map.getPane('pane_LaGargaOrba_1').style.zIndex = 401;
+        map.getPane('pane_LaGargaOrba_1').style['mix-blend-mode'] = 'normal';
+        var layer_LaGargaOrba_1 = new L.geoJson(json_LaGargaOrba_1, {
+            attribution: '',
+            interactive: true,
+            dataVar: 'json_LaGargaOrba_1',
+            layerName: 'layer_LaGargaOrba_1',
+            pane: 'pane_LaGargaOrba_1',
+            onEachFeature: pop_LaGargaOrba_1,
+            style: style_LaGargaOrba_1_0,
+        });
+        bounds_group.addLayer(layer_LaGargaOrba_1);
+        map.addLayer(layer_LaGargaOrba_1);
+        function pop_LaGargaSagra_2(feature, layer) {
+            var popupContent = '<table>\
+                    <tr>\
+                        <th scope="row">Name</th>\
+                        <td>' + (feature.properties['Name'] !== null ? autolinker.link(feature.properties['Name'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <th scope="row">descriptio</th>\
+                        <td>' + (feature.properties['descriptio'] !== null ? autolinker.link(feature.properties['descriptio'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <th scope="row">Atributos ciclismo_���full_id</th>\
+                        <td>' + (feature.properties['Atributos ciclismo_���full_id'] !== null ? autolinker.link(feature.properties['Atributos ciclismo_���full_id'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <th scope="row">Atributos ciclismo_osm_id</th>\
+                        <td>' + (feature.properties['Atributos ciclismo_osm_id'] !== null ? autolinker.link(feature.properties['Atributos ciclismo_osm_id'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <th scope="row">Atributos ciclismo_osm_type</th>\
+                        <td>' + (feature.properties['Atributos ciclismo_osm_type'] !== null ? autolinker.link(feature.properties['Atributos ciclismo_osm_type'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <th scope="row">Atributos ciclismo_route</th>\
+                        <td>' + (feature.properties['Atributos ciclismo_route'] !== null ? autolinker.link(feature.properties['Atributos ciclismo_route'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <th scope="row">Atributos ciclismo_type</th>\
+                        <td>' + (feature.properties['Atributos ciclismo_type'] !== null ? autolinker.link(feature.properties['Atributos ciclismo_type'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <th scope="row">Atributos ciclismo_ref</th>\
+                        <td>' + (feature.properties['Atributos ciclismo_ref'] !== null ? autolinker.link(feature.properties['Atributos ciclismo_ref'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <th scope="row">Atributos ciclismo_operator</th>\
+                        <td>' + (feature.properties['Atributos ciclismo_operator'] !== null ? autolinker.link(feature.properties['Atributos ciclismo_operator'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <th scope="row">Atributos ciclismo_network</th>\
+                        <td>' + (feature.properties['Atributos ciclismo_network'] !== null ? autolinker.link(feature.properties['Atributos ciclismo_network'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <th scope="row">Atributos ciclismo_mtb_scale_</th>\
+                        <td>' + (feature.properties['Atributos ciclismo_mtb_scale_'] !== null ? autolinker.link(feature.properties['Atributos ciclismo_mtb_scale_'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <th scope="row">Atributos ciclismo_distance</th>\
+                        <td>' + (feature.properties['Atributos ciclismo_distance'] !== null ? autolinker.link(feature.properties['Atributos ciclismo_distance'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <th scope="row">Atributos ciclismo_ascent</th>\
+                        <td>' + (feature.properties['Atributos ciclismo_ascent'] !== null ? autolinker.link(feature.properties['Atributos ciclismo_ascent'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                </table>';
+            layer.bindPopup(popupContent, {maxHeight: 400});
+        }
+
+        function style_LaGargaSagra_2_0() {
+            return {
+                pane: 'pane_LaGargaSagra_2',
+                opacity: 1,
+                color: 'rgba(255,10,34,1.0)',
+                dashArray: '',
+                lineCap: 'square',
+                lineJoin: 'bevel',
+                weight: 3.0,
+                fillOpacity: 0,
+                interactive: true,
+            }
+        }
+        map.createPane('pane_LaGargaSagra_2');
+        map.getPane('pane_LaGargaSagra_2').style.zIndex = 402;
+        map.getPane('pane_LaGargaSagra_2').style['mix-blend-mode'] = 'normal';
+        var layer_LaGargaSagra_2 = new L.geoJson(json_LaGargaSagra_2, {
+            attribution: '',
+            interactive: true,
+            dataVar: 'json_LaGargaSagra_2',
+            layerName: 'layer_LaGargaSagra_2',
+            pane: 'pane_LaGargaSagra_2',
+            onEachFeature: pop_LaGargaSagra_2,
+            style: style_LaGargaSagra_2_0,
+        });
+        bounds_group.addLayer(layer_LaGargaSagra_2);
+        map.addLayer(layer_LaGargaSagra_2);
+        function pop_LaGargaSur_3(feature, layer) {
+            var popupContent = '<table>\
+                    <tr>\
+                        <th scope="row">Name</th>\
+                        <td>' + (feature.properties['Name'] !== null ? autolinker.link(feature.properties['Name'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <th scope="row">descriptio</th>\
+                        <td>' + (feature.properties['descriptio'] !== null ? autolinker.link(feature.properties['descriptio'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <th scope="row">Atributos ciclismo_���full_id</th>\
+                        <td>' + (feature.properties['Atributos ciclismo_���full_id'] !== null ? autolinker.link(feature.properties['Atributos ciclismo_���full_id'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <th scope="row">Atributos ciclismo_osm_id</th>\
+                        <td>' + (feature.properties['Atributos ciclismo_osm_id'] !== null ? autolinker.link(feature.properties['Atributos ciclismo_osm_id'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <th scope="row">Atributos ciclismo_osm_type</th>\
+                        <td>' + (feature.properties['Atributos ciclismo_osm_type'] !== null ? autolinker.link(feature.properties['Atributos ciclismo_osm_type'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <th scope="row">Atributos ciclismo_route</th>\
+                        <td>' + (feature.properties['Atributos ciclismo_route'] !== null ? autolinker.link(feature.properties['Atributos ciclismo_route'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <th scope="row">Atributos ciclismo_type</th>\
+                        <td>' + (feature.properties['Atributos ciclismo_type'] !== null ? autolinker.link(feature.properties['Atributos ciclismo_type'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <th scope="row">Atributos ciclismo_ref</th>\
+                        <td>' + (feature.properties['Atributos ciclismo_ref'] !== null ? autolinker.link(feature.properties['Atributos ciclismo_ref'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <th scope="row">Atributos ciclismo_operator</th>\
+                        <td>' + (feature.properties['Atributos ciclismo_operator'] !== null ? autolinker.link(feature.properties['Atributos ciclismo_operator'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <th scope="row">Atributos ciclismo_network</th>\
+                        <td>' + (feature.properties['Atributos ciclismo_network'] !== null ? autolinker.link(feature.properties['Atributos ciclismo_network'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <th scope="row">Atributos ciclismo_mtb_scale_</th>\
+                        <td>' + (feature.properties['Atributos ciclismo_mtb_scale_'] !== null ? autolinker.link(feature.properties['Atributos ciclismo_mtb_scale_'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <th scope="row">Atributos ciclismo_distance</th>\
+                        <td>' + (feature.properties['Atributos ciclismo_distance'] !== null ? autolinker.link(feature.properties['Atributos ciclismo_distance'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <th scope="row">Atributos ciclismo_ascent</th>\
+                        <td>' + (feature.properties['Atributos ciclismo_ascent'] !== null ? autolinker.link(feature.properties['Atributos ciclismo_ascent'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                </table>';
+            layer.bindPopup(popupContent, {maxHeight: 400});
+        }
+
+        function style_LaGargaSur_3_0() {
+            return {
+                pane: 'pane_LaGargaSur_3',
+                opacity: 1,
+                color: 'rgba(255,255,0,1.0)',
+                dashArray: '',
+                lineCap: 'square',
+                lineJoin: 'bevel',
+                weight: 3.0,
+                fillOpacity: 0,
+                interactive: true,
+            }
+        }
+        map.createPane('pane_LaGargaSur_3');
+        map.getPane('pane_LaGargaSur_3').style.zIndex = 403;
+        map.getPane('pane_LaGargaSur_3').style['mix-blend-mode'] = 'normal';
+        var layer_LaGargaSur_3 = new L.geoJson(json_LaGargaSur_3, {
+            attribution: '',
+            interactive: true,
+            dataVar: 'json_LaGargaSur_3',
+            layerName: 'layer_LaGargaSur_3',
+            pane: 'pane_LaGargaSur_3',
+            onEachFeature: pop_LaGargaSur_3,
+            style: style_LaGargaSur_3_0,
+        });
+        bounds_group.addLayer(layer_LaGargaSur_3);
+        map.addLayer(layer_LaGargaSur_3);
+        function pop_AltodeEbo_4(feature, layer) {
+            var popupContent = '<table>\
+                    <tr>\
+                        <th scope="row">Name</th>\
+                        <td>' + (feature.properties['Name'] !== null ? autolinker.link(feature.properties['Name'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <th scope="row">descriptio</th>\
+                        <td>' + (feature.properties['descriptio'] !== null ? autolinker.link(feature.properties['descriptio'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <th scope="row">Atributos ciclismo_���full_id</th>\
+                        <td>' + (feature.properties['Atributos ciclismo_���full_id'] !== null ? autolinker.link(feature.properties['Atributos ciclismo_���full_id'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <th scope="row">Atributos ciclismo_osm_id</th>\
+                        <td>' + (feature.properties['Atributos ciclismo_osm_id'] !== null ? autolinker.link(feature.properties['Atributos ciclismo_osm_id'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <th scope="row">Atributos ciclismo_osm_type</th>\
+                        <td>' + (feature.properties['Atributos ciclismo_osm_type'] !== null ? autolinker.link(feature.properties['Atributos ciclismo_osm_type'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <th scope="row">Atributos ciclismo_route</th>\
+                        <td>' + (feature.properties['Atributos ciclismo_route'] !== null ? autolinker.link(feature.properties['Atributos ciclismo_route'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <th scope="row">Atributos ciclismo_type</th>\
+                        <td>' + (feature.properties['Atributos ciclismo_type'] !== null ? autolinker.link(feature.properties['Atributos ciclismo_type'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <th scope="row">Atributos ciclismo_ref</th>\
+                        <td>' + (feature.properties['Atributos ciclismo_ref'] !== null ? autolinker.link(feature.properties['Atributos ciclismo_ref'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <th scope="row">Atributos ciclismo_operator</th>\
+                        <td>' + (feature.properties['Atributos ciclismo_operator'] !== null ? autolinker.link(feature.properties['Atributos ciclismo_operator'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <th scope="row">Atributos ciclismo_network</th>\
+                        <td>' + (feature.properties['Atributos ciclismo_network'] !== null ? autolinker.link(feature.properties['Atributos ciclismo_network'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <th scope="row">Atributos ciclismo_mtb_scale_</th>\
+                        <td>' + (feature.properties['Atributos ciclismo_mtb_scale_'] !== null ? autolinker.link(feature.properties['Atributos ciclismo_mtb_scale_'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <th scope="row">Atributos ciclismo_distance</th>\
+                        <td>' + (feature.properties['Atributos ciclismo_distance'] !== null ? autolinker.link(feature.properties['Atributos ciclismo_distance'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <th scope="row">Atributos ciclismo_ascent</th>\
+                        <td>' + (feature.properties['Atributos ciclismo_ascent'] !== null ? autolinker.link(feature.properties['Atributos ciclismo_ascent'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                </table>';
+            layer.bindPopup(popupContent, {maxHeight: 400});
+        }
+
+        function style_AltodeEbo_4_0() {
+            return {
+                pane: 'pane_AltodeEbo_4',
+                opacity: 1,
+                color: 'rgba(255,255,0,1.0)',
+                dashArray: '',
+                lineCap: 'square',
+                lineJoin: 'bevel',
+                weight: 3.0,
+                fillOpacity: 0,
+                interactive: true,
+            }
+        }
+        map.createPane('pane_AltodeEbo_4');
+        map.getPane('pane_AltodeEbo_4').style.zIndex = 404;
+        map.getPane('pane_AltodeEbo_4').style['mix-blend-mode'] = 'normal';
+        var layer_AltodeEbo_4 = new L.geoJson(json_AltodeEbo_4, {
+            attribution: '',
+            interactive: true,
+            dataVar: 'json_AltodeEbo_4',
+            layerName: 'layer_AltodeEbo_4',
+            pane: 'pane_AltodeEbo_4',
+            onEachFeature: pop_AltodeEbo_4,
+            style: style_AltodeEbo_4_0,
+        });
+        bounds_group.addLayer(layer_AltodeEbo_4);
+        map.addLayer(layer_AltodeEbo_4);
+        function pop_Ratestossaldelsdiners_5(feature, layer) {
+            var popupContent = '<table>\
+                    <tr>\
+                        <th scope="row">Name</th>\
+                        <td>' + (feature.properties['Name'] !== null ? autolinker.link(feature.properties['Name'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <th scope="row">descriptio</th>\
+                        <td>' + (feature.properties['descriptio'] !== null ? autolinker.link(feature.properties['descriptio'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <th scope="row">Atributos ciclismo_���full_id</th>\
+                        <td>' + (feature.properties['Atributos ciclismo_���full_id'] !== null ? autolinker.link(feature.properties['Atributos ciclismo_���full_id'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <th scope="row">Atributos ciclismo_osm_id</th>\
+                        <td>' + (feature.properties['Atributos ciclismo_osm_id'] !== null ? autolinker.link(feature.properties['Atributos ciclismo_osm_id'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <th scope="row">Atributos ciclismo_osm_type</th>\
+                        <td>' + (feature.properties['Atributos ciclismo_osm_type'] !== null ? autolinker.link(feature.properties['Atributos ciclismo_osm_type'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <th scope="row">Atributos ciclismo_route</th>\
+                        <td>' + (feature.properties['Atributos ciclismo_route'] !== null ? autolinker.link(feature.properties['Atributos ciclismo_route'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <th scope="row">Atributos ciclismo_type</th>\
+                        <td>' + (feature.properties['Atributos ciclismo_type'] !== null ? autolinker.link(feature.properties['Atributos ciclismo_type'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <th scope="row">Atributos ciclismo_ref</th>\
+                        <td>' + (feature.properties['Atributos ciclismo_ref'] !== null ? autolinker.link(feature.properties['Atributos ciclismo_ref'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <th scope="row">Atributos ciclismo_operator</th>\
+                        <td>' + (feature.properties['Atributos ciclismo_operator'] !== null ? autolinker.link(feature.properties['Atributos ciclismo_operator'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <th scope="row">Atributos ciclismo_network</th>\
+                        <td>' + (feature.properties['Atributos ciclismo_network'] !== null ? autolinker.link(feature.properties['Atributos ciclismo_network'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <th scope="row">Atributos ciclismo_mtb_scale_</th>\
+                        <td>' + (feature.properties['Atributos ciclismo_mtb_scale_'] !== null ? autolinker.link(feature.properties['Atributos ciclismo_mtb_scale_'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <th scope="row">Atributos ciclismo_distance</th>\
+                        <td>' + (feature.properties['Atributos ciclismo_distance'] !== null ? autolinker.link(feature.properties['Atributos ciclismo_distance'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <th scope="row">Atributos ciclismo_ascent</th>\
+                        <td>' + (feature.properties['Atributos ciclismo_ascent'] !== null ? autolinker.link(feature.properties['Atributos ciclismo_ascent'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                </table>';
+            layer.bindPopup(popupContent, {maxHeight: 400});
+        }
+
+        function style_Ratestossaldelsdiners_5_0() {
+            return {
+                pane: 'pane_Ratestossaldelsdiners_5',
+                opacity: 1,
+                color: 'rgba(255,10,34,1.0)',
+                dashArray: '',
+                lineCap: 'square',
+                lineJoin: 'bevel',
+                weight: 3.0,
+                fillOpacity: 0,
+                interactive: true,
+            }
+        }
+        map.createPane('pane_Ratestossaldelsdiners_5');
+        map.getPane('pane_Ratestossaldelsdiners_5').style.zIndex = 405;
+        map.getPane('pane_Ratestossaldelsdiners_5').style['mix-blend-mode'] = 'normal';
+        var layer_Ratestossaldelsdiners_5 = new L.geoJson(json_Ratestossaldelsdiners_5, {
+            attribution: '',
+            interactive: true,
+            dataVar: 'json_Ratestossaldelsdiners_5',
+            layerName: 'layer_Ratestossaldelsdiners_5',
+            pane: 'pane_Ratestossaldelsdiners_5',
+            onEachFeature: pop_Ratestossaldelsdiners_5,
+            style: style_Ratestossaldelsdiners_5_0,
+        });
+        bounds_group.addLayer(layer_Ratestossaldelsdiners_5);
+        map.addLayer(layer_Ratestossaldelsdiners_5);
+        function pop_FinCiclismo_6(feature, layer) {
+            var popupContent = '<table>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['id'] !== null ? autolinker.link(feature.properties['id'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <th scope="row">Fin</th>\
+                        <td>' + (feature.properties['Fin'] !== null ? autolinker.link(feature.properties['Fin'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                </table>';
+            layer.bindPopup(popupContent, {maxHeight: 400});
+        }
+
+        function style_FinCiclismo_6_0() {
+            return {
+                pane: 'pane_FinCiclismo_6',
+                radius: 7.200000000000003,
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1,
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(255,0,0,1.0)',
+                interactive: true,
+            }
+        }
+        map.createPane('pane_FinCiclismo_6');
+        map.getPane('pane_FinCiclismo_6').style.zIndex = 406;
+        map.getPane('pane_FinCiclismo_6').style['mix-blend-mode'] = 'normal';
+        var layer_FinCiclismo_6 = new L.geoJson(json_FinCiclismo_6, {
+            attribution: '',
+            interactive: true,
+            dataVar: 'json_FinCiclismo_6',
+            layerName: 'layer_FinCiclismo_6',
+            pane: 'pane_FinCiclismo_6',
+            onEachFeature: pop_FinCiclismo_6,
+            pointToLayer: function (feature, latlng) {
+                var context = {
+                    feature: feature,
+                    variables: {}
+                };
+                return L.circleMarker(latlng, style_FinCiclismo_6_0(feature));
+            },
+        });
+        var cluster_FinCiclismo_6 = new L.MarkerClusterGroup({showCoverageOnHover: false,
+            spiderfyDistanceMultiplier: 2});
+        cluster_FinCiclismo_6.addLayer(layer_FinCiclismo_6);
+
+        bounds_group.addLayer(layer_FinCiclismo_6);
+        cluster_FinCiclismo_6.addTo(map);
+        function pop_InicioCiclismo_7(feature, layer) {
+            var popupContent = '<table>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['id'] !== null ? autolinker.link(feature.properties['id'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <th scope="row">Inicio</th>\
+                        <td>' + (feature.properties['Inicio'] !== null ? autolinker.link(feature.properties['Inicio'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                </table>';
+            layer.bindPopup(popupContent, {maxHeight: 400});
+        }
+
+        function style_InicioCiclismo_7_0() {
+            return {
+                pane: 'pane_InicioCiclismo_7',
+                radius: 8.000000000000004,
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1,
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(133,182,111,1.0)',
+                interactive: true,
+            }
+        }
+        map.createPane('pane_InicioCiclismo_7');
+        map.getPane('pane_InicioCiclismo_7').style.zIndex = 407;
+        map.getPane('pane_InicioCiclismo_7').style['mix-blend-mode'] = 'normal';
+        var layer_InicioCiclismo_7 = new L.geoJson(json_InicioCiclismo_7, {
+            attribution: '',
+            interactive: true,
+            dataVar: 'json_InicioCiclismo_7',
+            layerName: 'layer_InicioCiclismo_7',
+            pane: 'pane_InicioCiclismo_7',
+            onEachFeature: pop_InicioCiclismo_7,
+            pointToLayer: function (feature, latlng) {
+                var context = {
+                    feature: feature,
+                    variables: {}
+                };
+                return L.circleMarker(latlng, style_InicioCiclismo_7_0(feature));
+            },
+        });
+        var cluster_InicioCiclismo_7 = new L.MarkerClusterGroup({showCoverageOnHover: false,
+            spiderfyDistanceMultiplier: 2});
+        cluster_InicioCiclismo_7.addLayer(layer_InicioCiclismo_7);
+
+        bounds_group.addLayer(layer_InicioCiclismo_7);
+        cluster_InicioCiclismo_7.addTo(map);
+        var baseMaps = {};
+        L.control.layers(baseMaps,{'<img src="legend/InicioCiclismo_7.png" /> Inicio Ciclismo': cluster_InicioCiclismo_7,'<img src="legend/FinCiclismo_6.png" /> Fin Ciclismo': cluster_FinCiclismo_6,'<img src="legend/Ratestossaldelsdiners_5.png" /> Rates tossal dels diners': layer_Ratestossaldelsdiners_5,'<img src="legend/AltodeEbo_4.png" /> Alto de Ebo': layer_AltodeEbo_4,'<img src="legend/LaGargaSur_3.png" /> La Garga - Sur': layer_LaGargaSur_3,'<img src="legend/LaGargaSagra_2.png" /> La Garga - Sagra': layer_LaGargaSagra_2,'<img src="legend/LaGargaOrba_1.png" /> La Garga - Orba': layer_LaGargaOrba_1,"OpenStreetMap": layer_OpenStreetMap_0,}).addTo(map);
+        setBounds();
+        var i = 0;
+        layer_LaGargaOrba_1.eachLayer(function(layer) {
+            var context = {
+                feature: layer.feature,
+                variables: {}
+            };
+            layer.bindTooltip((layer.feature.properties['Name'] !== null?String('<div style="color: #323232; font-size: 5pt; font-family: \'Arial Black\', sans-serif;">' + layer.feature.properties['Name']) + '</div>':''), {permanent: true, offset: [-0, -16], className: 'css_LaGargaOrba_1'});
+            labels.push(layer);
+            totalMarkers += 1;
+              layer.added = true;
+              addLabel(layer, i);
+              i++;
+        });
+        var i = 0;
+        layer_LaGargaSagra_2.eachLayer(function(layer) {
+            var context = {
+                feature: layer.feature,
+                variables: {}
+            };
+            layer.bindTooltip((layer.feature.properties['Name'] !== null?String('<div style="color: #323232; font-size: 5pt; font-family: \'Arial Black\', sans-serif;">' + layer.feature.properties['Name']) + '</div>':''), {permanent: true, offset: [-0, -16], className: 'css_LaGargaSagra_2'});
+            labels.push(layer);
+            totalMarkers += 1;
+              layer.added = true;
+              addLabel(layer, i);
+              i++;
+        });
+        var i = 0;
+        layer_LaGargaSur_3.eachLayer(function(layer) {
+            var context = {
+                feature: layer.feature,
+                variables: {}
+            };
+            layer.bindTooltip((layer.feature.properties['Name'] !== null?String('<div style="color: #323232; font-size: 5pt; font-family: \'Arial Black\', sans-serif;">' + layer.feature.properties['Name']) + '</div>':''), {permanent: true, offset: [-0, -16], className: 'css_LaGargaSur_3'});
+            labels.push(layer);
+            totalMarkers += 1;
+              layer.added = true;
+              addLabel(layer, i);
+              i++;
+        });
+        var i = 0;
+        layer_AltodeEbo_4.eachLayer(function(layer) {
+            var context = {
+                feature: layer.feature,
+                variables: {}
+            };
+            layer.bindTooltip((layer.feature.properties['Name'] !== null?String('<div style="color: #323232; font-size: 5pt; font-family: \'Arial Black\', sans-serif;">' + layer.feature.properties['Name']) + '</div>':''), {permanent: true, offset: [-0, -16], className: 'css_AltodeEbo_4'});
+            labels.push(layer);
+            totalMarkers += 1;
+              layer.added = true;
+              addLabel(layer, i);
+              i++;
+        });
+        var i = 0;
+        layer_Ratestossaldelsdiners_5.eachLayer(function(layer) {
+            var context = {
+                feature: layer.feature,
+                variables: {}
+            };
+            layer.bindTooltip((layer.feature.properties['Name'] !== null?String('<div style="color: #323232; font-size: 5pt; font-family: \'Arial Black\', sans-serif;">' + layer.feature.properties['Name']) + '</div>':''), {permanent: true, offset: [-0, -16], className: 'css_Ratestossaldelsdiners_5'});
+            labels.push(layer);
+            totalMarkers += 1;
+              layer.added = true;
+              addLabel(layer, i);
+              i++;
+        });
+        resetLabels([layer_LaGargaOrba_1,layer_LaGargaSagra_2,layer_LaGargaSur_3,layer_AltodeEbo_4,layer_Ratestossaldelsdiners_5]);
+        map.on("zoomend", function(){
+            resetLabels([layer_LaGargaOrba_1,layer_LaGargaSagra_2,layer_LaGargaSur_3,layer_AltodeEbo_4,layer_Ratestossaldelsdiners_5]);
+        });
+        map.on("layeradd", function(){
+            resetLabels([layer_LaGargaOrba_1,layer_LaGargaSagra_2,layer_LaGargaSur_3,layer_AltodeEbo_4,layer_Ratestossaldelsdiners_5]);
+        });
+        map.on("layerremove", function(){
+            resetLabels([layer_LaGargaOrba_1,layer_LaGargaSagra_2,layer_LaGargaSur_3,layer_AltodeEbo_4,layer_Ratestossaldelsdiners_5]);
+        });
+        </script>
+    </body>
+</html>
