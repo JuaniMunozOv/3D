@@ -481,33 +481,37 @@ table.measure tr > td:nth-child(2) {
 .nextbtn::before {
   content: url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAxMDAgMTAwIj48cGF0aCBkPSJNMzYuNyAxOC4yIDY4LjUgNTAgMzYuNyA4MS44IiBzdHJva2U9IiMwMDAiIHN0cm9rZS1saW5lY2FwPSJzcXVhcmUiIHN0cm9rZS13aWR0aD0iMTQiIGZpbGw9Im5vbmUiIGNsYXNzPSJsYXllciIvPjwvc3ZnPg==");
 }
-
-/* Estilos para el botón de senderismo */
-.senderismo-btn-container {
+/* Contenedor para los botones */
+.map-buttons-container {
     position: absolute;
-    top: 0; /* Alineado con el margen superior */
-    left: 50%; /* Centrado en la mitad de la página */
-    transform: translateX(-50%); /* Desplaza el botón a la mitad de su anchura hacia la izquierda */
-    z-index: 10000; /* Coloca el botón sobre otros elementos si es necesario */
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 10000;
+    display: flex;
+    justify-content: center;
 }
 
-.btn-senderismo {
+/* Estilo común para cada botón de mapa */
+.map-btn {
     font-size: 24px;
     color: white;
     background-color: green;
     padding: 10px 20px;
+    margin: 0 5px; /* Espaciado entre botones */
     border: none;
     border-radius: 5px;
     cursor: pointer;
-    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
-    display: inline-block; /* Esto permite que la transformación de translateX funcione correctamente */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    text-align: center;
+    display: inline-block;
 }
 
-.btn-senderismo:hover {
+.map-btn:hover {
     background-color: darkgreen;
 }
 
-.btn-senderismo img {
+.map-btn img {
     height: 24px;
     width: 24px;
     margin-right: 5px;
