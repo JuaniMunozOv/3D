@@ -1,22 +1,29 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="UTF-8">
-<title>3D con rutas MTB-SENDERISMO-CICLISMO</title>
-<meta name="viewport" content="width=device-width, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
-<base target="_blank">
-<link rel="stylesheet" type="text/css" href="./Qgis2threejs.css">
-<link rel="stylesheet" type="text/css" href="./mobile.css">
-<script defer src="./fontawesome/solid.min.js"></script>
-<script defer src="./fontawesome/fontawesome.min.js"></script>
-<script src="./threejs/three.min.js"></script>
-<script src="./threejs/OrbitControls.js"></script>
-<script src="./proj4js/proj4.js"></script>
-<script src="./Qgis2threejs.js"></script>
-<script src="./threejs/DeviceOrientationControls.js"></script>
-<script src="./mobile.js"></script>
+    <meta charset="UTF-8">
+    <title>3D con rutas MTB-SENDERISMO-CICLISMO</title>
+    <meta name="viewport" content="width=device-width, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
+    <base target="_blank">
+    <link rel="stylesheet" type="text/css" href="./Qgis2threejs.css">
+    <link rel="stylesheet" type="text/css" href="./mobile.css">
+    <script defer src="./fontawesome/solid.min.js"></script>
+    <script defer src="./fontawesome/fontawesome.min.js"></script>
+    <script src="./threejs/three.min.js"></script>
+    <script src="./threejs/OrbitControls.js"></script>
+    <script src="./proj4js/proj4.js"></script>
+    <script src="./Qgis2threejs.js"></script>
+    <script src="./threejs/DeviceOrientationControls.js"></script>
+    <script src="./mobile.js"></script>
 </head>
 <body>
+
+    <!-- Botón para acceder al mapa 2D de senderismo -->
+    <div style="position: absolute; top: 10px; left: 10px; z-index: 1000;">
+        <a href="https://juanimunozov.github.io/3D/webSenderismo/qgis2web_2023_11_23-21_32_44_857124/index.html" title="Ver mapa de senderismo 2D" target="_blank">
+            <button class="btn" style="font-size: 24px; color: green;"><i class="fas fa-hiking"></i> Senderismo</button>
+        </a>
+    </div>
 
 <video id="video" autoplay></video>
 <div id="view">
