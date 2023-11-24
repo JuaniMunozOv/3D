@@ -481,3 +481,25 @@ table.measure tr > td:nth-child(2) {
 .nextbtn::before {
   content: url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAxMDAgMTAwIj48cGF0aCBkPSJNMzYuNyAxOC4yIDY4LjUgNTAgMzYuNyA4MS44IiBzdHJva2U9IiMwMDAiIHN0cm9rZS1saW5lY2FwPSJzcXVhcmUiIHN0cm9rZS13aWR0aD0iMTQiIGZpbGw9Im5vbmUiIGNsYXNzPSJsYXllciIvPjwvc3ZnPg==");
 }
+/* Estilos para el botón de senderismo */
+.btn-senderismo {
+    position: absolute;
+    top: 10px; /* ajusta según sea necesario */
+    left: 10px; /* ajusta según sea necesario */
+    z-index: 10000; /* un valor alto para asegurar que esté sobre otros elementos */
+    font-size: 24px;
+    color: white; /* para contraste */
+    background-color: green; /* color distintivo para el botón */
+    padding: 10px 20px; /* espaciado interno para hacerlo más grande y legible */
+    border: none; /* quitar bordes por defecto */
+    border-radius: 5px; /* bordes redondeados para estética */
+    cursor: pointer; /* cambiar el cursor al pasar por encima para indicar clickeabilidad */
+    text-align: center; /* asegurar que el texto está centrado */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* sombra para resaltar */
+}
+.btn-senderismo:hover {
+    background-color: darkgreen; /* efecto al pasar el cursor */
+}
+.btn-senderismo i {
+    margin-right: 5px; /* espacio entre el icono y el texto */
+}
