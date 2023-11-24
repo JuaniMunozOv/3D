@@ -485,10 +485,10 @@ table.measure tr > td:nth-child(2) {
 /* Estilos para el botón de senderismo */
 .senderismo-btn-container {
     position: absolute;
-    top: 10px; /* Ajusta esto para cambiar la distancia desde el margen superior */
-    left: 50%;
-    transform: translateX(-50%);
-    z-index: 10000; /* Asegúrate de que sea un valor más alto que otros elementos */
+    top: 0; /* Alineado con el margen superior */
+    left: 50%; /* Centrado en la mitad de la página */
+    transform: translateX(-50%); /* Desplaza el botón a la mitad de su anchura hacia la izquierda */
+    z-index: 10000; /* Coloca el botón sobre otros elementos si es necesario */
 }
 
 .btn-senderismo {
@@ -499,12 +499,17 @@ table.measure tr > td:nth-child(2) {
     border: none;
     border-radius: 5px;
     cursor: pointer;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-    text-align: center;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+    display: inline-block; /* Esto permite que la transformación de translateX funcione correctamente */
 }
+
 .btn-senderismo:hover {
     background-color: darkgreen;
 }
-.btn-senderismo i {
+
+.btn-senderismo img {
+    height: 24px;
+    width: 24px;
     margin-right: 5px;
 }
+
