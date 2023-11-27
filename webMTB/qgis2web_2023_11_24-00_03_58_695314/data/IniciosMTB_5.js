@@ -1,1 +1,3 @@
-var json_IniciosMTB_5 = {"type":"FeatureCollection","name":"IniciosMTB_5","crs":{"type":"name","properties":{"name":"urn:ogc:def:crs:OGC:1.3:CRS84"}},"features":[{"type":"Feature","properties":{"id":"1","Ruta":"Sierra"},"geometry":{"type":"Point","coordinates":[-0.195029283230439,38.724201952700675]}},{"type":"Feature","properties":{"id":"1","Ruta":"Vall D'"},"geometry":{"type":"Point","coordinates":[-0.17268734979548,38.753368115471666]}},{"type":"Feature","properties":{"id":"1","Ruta":"Campos Mur"},"geometry":{"type":"Point","coordinates":[-0.067547942917151,38.745166237113402]}}]}
+version https://git-lfs.github.com/spec/v1
+oid sha256:7e49a82173a6c6c5f12570e4cde3232e6b574279fe6dd0b0b1def2eb00fb2d98
+size 590
